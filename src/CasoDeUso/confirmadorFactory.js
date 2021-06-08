@@ -1,8 +1,8 @@
-import {crearConfirmadorDeTurno} from '../src/ConfirmadorDeTurno.js'
-import {crearEnviadorDeMail} from '../src/EnviadorMailTurnos.js'
-import {crearConversorPdf} from '../src/ConvertirAPDF.js'
-import {CrearDaoSolicitudes} from '../src/DaoSolicitudes.js'
-import {CrearMolder} from '../src/MolderDatosPdf.js'
+import {crearConfirmadorDeTurno} from '../CasoDeUso/ConfirmadorDeTurno.js'
+import {crearEnviadorDeMail} from '../mailer/EnviadorMailTurnos.js'
+import {crearConversorPdf} from '..//pdfer/ConvertirAPDF.js'
+import {CrearDaoSolicitudes} from '../daos/DaoSolicitudes.js'
+import {CrearMolder} from '../CasoDeUso/MolderDatosPdf.js'
 
  //inicializo lo necesario
  const enviadorDeMail = await crearEnviadorDeMail('ort.proy.integrador.21@gmail.com', 'Ort123456');

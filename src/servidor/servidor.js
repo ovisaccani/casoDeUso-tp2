@@ -1,5 +1,5 @@
 import express from 'express'
-import {crearCu} from './confirmadorFactory.js'
+import {crearCu} from '../CasoDeUso/confirmadorFactory.js'
 const app = express ()
 
 app.use(express.json())
