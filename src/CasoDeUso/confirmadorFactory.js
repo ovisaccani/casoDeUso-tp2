@@ -5,20 +5,20 @@ import {CrearDaoSolicitudes} from '../daos/DaoSolicitudes.js'
 import {CrearMolder} from '../CasoDeUso/MolderDatosPdf.js'
 
  //inicializo lo necesario
- const enviadorDeMail = await crearEnviadorDeMail('ort.proy.integrador.21@gmail.com', 'Ort123456');
- const conversorPdf = crearConversorPdf('../Pdfs') 
- const DaoSolicitudes = CrearDaoSolicitudes()
- const molder = CrearMolder()
+ //const enviadorDeMail = await crearEnviadorDeMail('ort.proy.integrador.21@gmail.com', 'Ort123456');
+ //const conversorPdf = crearConversorPdf('../Pdfs') 
+// const DaoSolicitudes = DaoSolicitudes()
+ //const molder = CrearMolder()
  //este es el dni que se le mandaria por parametro para cambiar el estado
 
 
  //inicializo mi CU
- function crearCu(){
+ async function crearCu(){
     const confirmadorDeTurno = crearConfirmadorDeTurno(
-        conversorPdf, 
-        enviadorDeMail,
-        DaoSolicitudes,
-        molder
+        crearConversorPdf('../Pdfs') , 
+        await crearEnviadorDeMail('ort.proy.integrador.21@gmail.com', 'Ort123456'),
+        CrearDaoSolicitudes(),
+        CrearMolder()
         )
         return confirmadorDeTurno
  }
