@@ -1,16 +1,17 @@
+import {crearSolicitudDeTurno} from '../CasoDeUso/SolicitudDeTurno.js'
 function crearConfirmadorDeTurno(pdfer, mailer, daoSolicitudes, molderDatosPdf){    
     return {
             confirmarPaciente: async (id, turno) => { 
-                /*const objectParametro = JSON.parse(JSON.stringify(parametros))
-                const dni = objectParametro.dni
-                const turno = objectParametro.turno*/
-                const solicitud = await daoSolicitudes.get(id)
+                const solicDTO = await daoSolicitudes.getById(id)
+                const solicitud = await crearSolicitudDeTurno(solicDTO)
   
                 await solicitud.confirmarTurno()
                 
                 //agrego los datos del turno
                 await solicitud.establecerTurno(turno)
                 const paciente = await solicitud.getPaciente()
+
+                daoSolicitudes.save(solicitud)
                 //hago el esquema de datos para el pdf
                 const datos = molderDatosPdf.crearMolderParaPdf(paciente, turno)
 
@@ -22,8 +23,8 @@ function crearConfirmadorDeTurno(pdfer, mailer, daoSolicitudes, molderDatosPdf){
                 const nombreArchivo = nombrePdf + ".pdf"
                 //mando por parametro lo que necesita el mailer
                 
-                const mail = await solicitud.getMail()
-                await mailer.sendEmailWithAttachment(mail, nombreArchivo, '../Pdfs/' + nombreArchivo);
+                const email = await solicitud.getEmail()
+                await mailer.sendEmailWithAttachment(email, nombreArchivo, '../../Pdfs/' + nombreArchivo);
 
             }  
         }

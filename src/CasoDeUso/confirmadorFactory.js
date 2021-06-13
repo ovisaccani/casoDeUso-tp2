@@ -1,8 +1,9 @@
 import {crearConfirmadorDeTurno} from '../CasoDeUso/ConfirmadorDeTurno.js'
 import {crearEnviadorDeMail} from '../mailer/EnviadorMailTurnos.js'
-import {crearConversorPdf} from '..//pdfer/ConvertirAPDF.js'
-import {CrearDaoSolicitudes} from '../daos/DaoSolicitudes.js'
+import {crearConversorPdf} from '../pdfer/ConvertirAPDF.js'
+import {crearDaoSolicitudesDeTurno} from '../daos/DaoSolicitudes.js'
 import {CrearMolder} from '../CasoDeUso/MolderDatosPdf.js'
+
 
  //inicializo lo necesario
  //const enviadorDeMail = await crearEnviadorDeMail('ort.proy.integrador.21@gmail.com', 'Ort123456');
@@ -15,9 +16,9 @@ import {CrearMolder} from '../CasoDeUso/MolderDatosPdf.js'
  //inicializo mi CU
  async function crearCu(){
     const confirmadorDeTurno = crearConfirmadorDeTurno(
-        crearConversorPdf('../Pdfs') , 
+        crearConversorPdf('../../Pdfs') , 
         await crearEnviadorDeMail('ort.proy.integrador.21@gmail.com', 'Ort123456'),
-        CrearDaoSolicitudes(),
+        crearDaoSolicitudesDeTurno(),
         CrearMolder()
         )
         return confirmadorDeTurno
